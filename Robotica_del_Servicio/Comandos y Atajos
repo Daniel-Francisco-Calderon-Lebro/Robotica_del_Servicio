@@ -1,0 +1,58 @@
+df -h   distribución del disco o discos
+who    da información del usuario actual
+date     da la fecha y la hora
+top        administrador de tareas 
+htop    administrador de tareas avanzado
+free -m      estado de memoria
+sudo   comando para super Usuario
+apt      es igual que pip de python 
+su -       es para acceso total de ~$ a ~#
+apt search /aplicación   busca aplicación
+apt install /aplicación  instala aplicacion
+sudo apt update    actualiza cambios soft
+sudo apt upgrade  carga los cambios
+gedit      Editor de texto básico 
+
+
+Ficheros o directorios 
+
+pwd  directorio principal donde estoy
+ls    Es para ver la lista de carpetas actual
+ls -l   muestra muestra el detalle de todo
+ls -a  muestra carpetas ocultas 
+ls -al  muestra ficheros ocul importantes
+ls -alh (bus) legible para el usuario 
+ls -lr alfabética al revés 
+ls -ls  organiza por tamaño
+ls -lsh  (bis) tamaño y alfabético
+ls -lt  ordena fecha y hora nuevo a viejo
+ls -ltr  ordena fecha y hora viejo al nuevo
+ls -l /tmp   rutas archivos
+cd /destino   ruta relatva
+cd /home/user/ruta     ruta absoluta
+cd ..   regresar a la carpeta anterior
+cd carpeta   entra a a la carpeta del dire
+man pwd  | man muestra la descripción
+man ls       |de cada comando
+man cd      | q= salir. Flechas explorar 
+man...etc.  | buscar  copiar normal
+man man  | secciones de Linux important
+clear        limpia consola
+
+Atajos
+
+Crl ++    Ampliar Letra Terminal
+Crl ---     Reducir Letra Terminal 
+Crl+Alt+T   Abrir Nueva Terminal
+Crl+Shift+T  Abrir Ventana en terminal
+Crl+L          Limpia la pantalla sin perder 
+Crl+D         Cierra la ventana Actual
+Crl+C         Mata el proceso de la terminal 
+Crl+S          Guarda archivo
+
+
+comandos de ros2
+ros2 run turtlesim turtlesim_node
+ros2 service call /reset std_srvs/srv/Empty
+
+

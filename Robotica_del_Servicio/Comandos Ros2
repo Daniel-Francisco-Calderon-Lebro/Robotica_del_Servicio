@@ -1,0 +1,205 @@
+#########################comandos Generales#####################################
+#Listar los tópicos activos
+ros2 topic list
+
+# Ver detalles de un tópico
+ros2 topic info /nombre_del_topico
+
+# Publicar en un tópico
+ros2 topic pub /nombre_del_topico tipo_de_mensaje "datos_del_mensaje"
+
+# Suscribirse a un tópico
+ros2 topic echo /nombre_del_topico
+
+# Llamar a un servicio
+ros2 service call /nombre_del_servicio tipo_de_servicio "argumentos"
+
+# Listar los servicios disponibles
+ros2 service list
+
+# Ver detalles de un servicio
+ros2 service info /nombre_del_servicio
+
+# Listar nodos activos
+ros2 node list
+
+# Ver detalles de un nodo
+ros2 node info /nombre_del_nodo
+
+# Listar parámetros de un nodo
+ros2 param list /nombre_del_nodo
+
+# Obtener el valor de un parámetro
+ros2 param get /nombre_del_nodo nombre_del_parametro
+
+# Establecer el valor de un parámetro
+ros2 param set /nombre_del_nodo nombre_del_parametro valor
+
+# Reiniciar la tortuga en turtlesim
+ros2 service call /reset std_srvs/srv/Empty
+
+# Teletransportar la tortuga a una posición absoluta
+ros2 service call /teleport_absolute turtlesim/srv/TeleportAbsolute "x: 5.0
+y: 5.0
+theta: 0.0"
+
+# Teletransportar la tortuga a una posición relativa
+ros2 service call /teleport_relative turtlesim/srv/TeleportRelative "linear: 2.0
+angular: 3.0"
+
+# Cambiar el color de la tortuga
+ros2 service call /set_pen turtlesim/srv/SetPen "r: 255
+g: 0
+b: 0
+width: 2
+off: 0"
+
+# Ver el estado de los temas de diagnóstico
+ros2 topic echo /diagnostics
+
+# Actualizar los paquetes del sistema
+sudo apt update
+sudo apt upgrade
+
+# Instalar nuevos paquetes
+sudo apt install nombre_del_paquete
+
+# Construir el espacio de trabajo
+colcon build
+
+# Fuente del espacio de trabajo
+source install/setup.bash
+
+
+
+
+
+###################Para turtlesim1#####################################################################################################################
+
+# Mover la tortuga en una dirección específica (velocidad lineal y angular)
+ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 1.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 1.0"
+
+
+# Reiniciar la tortuga a su posición y orientación inicial
+ros2 service call /reset std_srvs/srv/Empty
+
+# Teletransportar la tortuga a una posición específica (5, 5)
+ros2 service call /teleport_absolute turtlesim/srv/TeleportAbsolute "x: 5.0
+y: 5.0
+theta: 0.0"
+
+# Teletransportar la tortuga a una posición relativa (2 unidades en x, 3 unidades en y)
+ros2 service call /teleport_relative turtlesim/srv/TeleportRelative "linear: 2.0
+angular: 3.0"
+
+# Cambiar el color de la tortuga (rojo)
+ros2 service call /set_pen turtlesim/srv/SetPen "r: 255
+g: 0
+b: 0
+width: 2
+off: 0"
+
+# Obtener la posición actual de la tortuga
+ros2 topic echo /turtle1/pose
+
+# Publicar una velocidad de rotación para girar sin moverse hacia adelante
+ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 2.0"
+
+# Cambiar el tamaño del trazo de la tortuga (ancho del trazo de 5)
+ros2 service call /set_pen turtlesim/srv/SetPen "r: 0
+g: 0
+b: 0
+width: 5
+off: 0"
+
+
+
+
+
+
+
+
+
+######################turtlebot3###################################################################################################################################################
+
+# 1. **Abrir una terminal y asegurarte de que tu espacio de trabajo esté configurado:**
+# Fuente del espacio de trabajo (ajusta la ruta según tu configuración)
+source /opt/ros/humble/setup.bash
+source ~/tu_espacio_de_trabajo/install/setup.bash
+
+# 2. **Iniciar el simulador de Turtlebot3:**
+# Primero, asegúrate de que los paquetes Turtlebot3 estén instalados
+sudo apt install ros-humble-turtlebot3*
+
+# Luego, inicia el simulador Turtlebot3
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+
+# 3. **En una nueva terminal, asegurarte de que tu espacio de trabajo esté configurado:**
+source /opt/ros/humble/setup.bash
+source ~/tu_espacio_de_trabajo/install/setup.bash
+
+# 4. **Iniciar el nodo de control del Turtlebot3:**
+ros2 launch turtlebot3_navigation2 turtlebot3_navigation2.launch.py
+
+# 5. **En una nueva terminal, enviar comandos de movimiento al Turtlebot3:**
+# Mover hacia adelante
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 0.5
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0"
+
+# Girar en el lugar
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 1.0"
+
+# Detener el Turtlebot3
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0"
+
+# 6. **En una nueva terminal, verificar el estado de los tópicos de diagnóstico:**
+ros2 topic echo /diagnostics
+
+# 7. **Cerrar el simulador:**
+# En la terminal donde iniciaste el simulador, puedes detenerlo con Ctrl+C.
+
+# 8. **(Opcional) Actualizar los paquetes del sistema:**
+sudo apt update
+sudo apt upgrade
+
+# 9. **(Opcional) Construir el espacio de trabajo (si hiciste cambios en el código):**
+colcon build
+
+# 10. **(Opcional) Fuente del espacio de trabajo después de construirlo:**
+source install/setup.bash
+
+
